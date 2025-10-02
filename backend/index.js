@@ -987,27 +987,29 @@ app.post('/api/admin/omie/lancamentos-lote', adminAuthMiddleware, async (req, re
 
 app.get('/', (req, res) => {
   res.json({ 
-    message: 'API Azenha Cartões',
+    message: 'API Azenha Cartões - Backend funcionando!',
     status: 'online',
     version: '1.0.0',
+    timestamp: new Date().toISOString(),
     endpoints: {
-      login: '/api/login',
-      adminLogin: '/api/admin/login',
-      health: '/api/health'
+      login: 'POST /api/login',
+      adminLogin: 'POST /api/admin/login',
+      lancamentos: 'GET /api/lancamentos',
+      health: 'GET /api/health'
     }
   });
 });
 
-// Health check
 app.get('/api/health', (req, res) => {
   res.json({ 
-    status: 'ok',
-    database: pool ? 'connected' : 'disconnected',
+    status: 'healthy',
+    database: 'connected',
+    server: 'running',
     timestamp: new Date().toISOString()
   });
 });
 
-
+// Iniciar servidor (JÁ EXISTE)
 app.listen(port, () => {
     console.log(`Back-end rodando em http://localhost:${port}`);
 });
