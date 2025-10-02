@@ -1,0 +1,200 @@
+/* Login.css - Estilização Aprimorada */
+
+/* 1. Fundo da Página (mais suave e moderno) */
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: #f0f2f5; /* Um cinza muito claro, mais acolhedor que o branco puro */
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+  padding: 1rem;
+}
+
+/* 2. Cartão de Login (mais elegante) */
+.login-card {
+  background: #ffffff; 
+  padding: 3rem;
+  border-radius: 16px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1); 
+  width: 100%;
+  max-width: 420px;
+  text-align: center;
+  animation: fadeIn 0.5s ease;
+}
+
+.login-logo {
+  width: 140px;
+  margin-bottom: 2rem;
+}
+
+.login-card h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #212529;
+  margin-bottom: 0.5rem;
+}
+
+.login-subtitle {
+  font-size: 1rem;
+  color: #6c757d;
+  margin-bottom: 2.5rem;
+}
+
+/* Campos e Labels */
+.login-form .form-group {
+  text-align: left;
+  margin-bottom: 1.5rem;
+}
+
+.login-form label {
+  display: block;
+  font-weight: 600;
+  font-size: 0.875rem;
+  color: #495057;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 0.5rem;
+}
+
+.login-form input {
+  width: 100%;
+  padding: 0.9rem 1rem;
+  border: 1px solid #ced4da;
+  border-radius: 10px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  background: #ffffff;
+}
+
+/* 3. Foco do Input (Dourado de Destaque) */
+.login-form input:focus {
+  outline: none;
+  border-color: #ac8009; /* Cor Dourada (Âmbar) principal */
+  box-shadow: 0 0 0 1px #ac8009;
+}
+
+/* 4. Botão de Login (Dourado com Texto Escuro) */
+.login-btn {
+  width: 100%;
+  padding: 1rem 1.5rem;
+  border: none;
+  border-radius: 10px;
+  font-size: 1.05rem;
+  font-weight: 700;
+  cursor: pointer;
+  background: linear-gradient(135deg, #a77c05, #c39818); 
+  color: #212529;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(172, 128, 9, 0.4);
+}
+
+.login-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(172, 128, 9, 0.6);
+}
+
+.login-btn:disabled {
+  background: #e9ecef;
+  color: #adb5bd;
+  cursor: not-allowed;
+  opacity: 1;
+  transform: none;
+  box-shadow: none;
+}
+
+.error-message {
+  color: #dc3545;
+  font-size: 0.875rem;
+  margin-bottom: 1.5rem;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.login-utility-header {
+  text-align: right;
+  margin-bottom: 1rem;
+}
+
+.theme-toggle-btn {
+  padding: 0.5rem 1rem;
+  border: 1px solid #ced4da;
+  border-radius: 8px;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: #495057;
+  font-weight: 500;
+}
+
+.theme-toggle-btn:hover {
+  background: #e9ecef;
+}
+
+/* Responsividade para telas muito pequenas */
+@media (max-width: 450px) {
+    .login-card {
+        padding: 2rem 1.5rem;
+        border-radius: 0;
+        box-shadow: none;
+    }
+}
+
+/* ========================================= */
+/* ======== ESTILIZAÇÃO MODO ESCURO ======== */
+/* ========================================= */
+
+.dark-mode .login-container {
+  background: #121212 !important; 
+}
+
+.dark-mode .login-card {
+  background: #1e1e1e;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+}
+
+.dark-mode .login-card h2,
+.dark-mode .login-form label,
+.dark-mode .login-btn {
+  color: #f0f0f0;
+}
+
+.dark-mode .login-subtitle {
+  color: #b0b0b0;
+}
+
+.dark-mode .login-form input {
+  background: #2c2c2c;
+  border-color: #3a3a3a;
+  color: #f0f0f0;
+}
+
+.dark-mode .login-form input:focus {
+  border-color: #ac8009;
+  box-shadow: 0 0 0 1px #ac8009;
+}
+
+.dark-mode .login-btn {
+  background: linear-gradient(135deg, #a77c05, #c39818); 
+  color: #212529;
+  box-shadow: 0 4px 10px rgba(172, 128, 9, 0.4);
+}
+
+.dark-mode .login-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(172, 128, 9, 0.6);
+}
+
+.dark-mode .login-btn:disabled {
+  background: #3a3a3a;
+  color: #6c757d;
+  opacity: 1;
+}
+
+.dark-mode .error-message {
+  color: #f5c6cb;
+}

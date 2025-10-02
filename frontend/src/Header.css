@@ -1,0 +1,53 @@
+/* Header.css */
+
+.header {
+  background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%); /* Fundo preto */
+  color: white;
+  padding: 0;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.header-content {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 1.5rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo-section {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.logo-image {
+  height: 50px;
+  width: auto;
+}
+
+.logo-text-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.logo-text {
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  color: #ac8009; /* Dourado */
+  margin: 0;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.logo-subtitle {
+  font-size: 0.85rem;
+  letter-spacing: 0.3em;
+  color: #ffffff;
+  font-weight: 300;
+  margin-top: -0.2rem;
+}

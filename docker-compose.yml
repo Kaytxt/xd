@@ -1,0 +1,51 @@
+version: '3.8'
+
+services:
+  backend:
+    build: ./backend
+    container_name: azenha-backend
+    restart: unless-stopped
+    environment:
+      - DB_HOST=37.27.218.219
+      - DB_PORT=5432
+      - DB_NAME=azenha_db
+      - DB_USER=root
+      - DB_PASSWORD=123@Azenha
+      - JWT_SECRET=1Ujkh2hkKjKIjhug2Huhfd1369NJLmkn
+      - PORT=3001
+      - NODE_ENV=production
+    networks:
+      - traefik_network
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.azenha-api.rule=Host(`api.azenhacartoes.askbar.com.br`)"
+      - "traefik.http.routers.azenha-api.entrypoints=websecure"
+      - "traefik.http.routers.azenha-api.tls.certresolver=letsencrypt"
+      - "traefik.http.services.azenha-api.loadbalancer.server.port=3001"
+      # CORS Headers
+      - "traefik.http.middlewares.azenha-cors.headers.accesscontrolallowmethods=GET,OPTIONS,PUT,POST,DELETE"
+      - "traefik.http.middlewares.azenha-cors.headers.accesscontrolalloworigin=https://azenhacartoes.askbar.com.br"
+      - "traefik.http.middlewares.azenha-cors.headers.accesscontrolallowcredentials=true"
+      - "traefik.http.middlewares.azenha-cors.headers.accesscontrolallowheaders=*"
+      - "traefik.http.routers.azenha-api.middlewares=azenha-cors"
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.frontend
+      args:
+        REACT_APP_API_URL: https://api.azenhacartoes.askbar.com.br
+    container_name: azenha-frontend
+    restart: unless-stopped
+    networks:
+      - traefik_network
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.azenha-frontend.rule=Host(`azenhacartoes.askbar.com.br`)"
+      - "traefik.http.routers.azenha-frontend.entrypoints=websecure"
+      - "traefik.http.routers.azenha-frontend.tls.certresolver=letsencrypt"
+      - "traefik.http.services.azenha-frontend.loadbalancer.server.port=80"
+
+networks:
+  traefik_network:
+    external: true
