@@ -6,15 +6,8 @@ echo "🌐 Domínio: azenhacartoes.askbar.com.br"
 echo "================================"
 echo ""
 
-# Verificar se docker-compose existe
 if [ ! -f "docker-compose.yml" ]; then
     echo "❌ ERRO: docker-compose.yml não encontrado"
-    exit 1
-fi
-
-# Verificar estrutura
-if [ ! -d "backend" ] || [ ! -d "frontend" ]; then
-    echo "❌ ERRO: Pastas backend/ ou frontend/ não encontradas"
     exit 1
 fi
 
@@ -29,7 +22,7 @@ fi
 
 echo ""
 echo "🛑 Parando containers antigos..."
-docker-compose down 2>/dev/null || true
+docker compose down 2>/dev/null || true
 echo "   ✅ Containers parados"
 
 echo ""
@@ -39,11 +32,11 @@ echo "   ✅ Limpeza concluída"
 
 echo ""
 echo "🏗️  Buildando imagens (pode demorar alguns minutos)..."
-docker-compose build --no-cache
+docker compose build --no-cache
 
 echo ""
 echo "🚀 Iniciando containers..."
-docker-compose up -d
+docker compose up -d
 
 echo ""
 echo "⏳ Aguardando containers iniciarem..."
@@ -51,16 +44,16 @@ sleep 15
 
 echo ""
 echo "📊 Status dos containers:"
-docker-compose ps
+docker compose ps
 
 echo ""
 echo "📋 Logs dos containers:"
 echo ""
 echo "=== BACKEND ==="
-docker logs --tail 20 azenha-backend
+docker logs --tail 20 azenha-backend 2>&1 | tail -20
 echo ""
 echo "=== FRONTEND ==="
-docker logs --tail 20 azenha-frontend
+docker logs --tail 20 azenha-frontend 2>&1 | tail -20
 
 echo ""
 echo "✅ Deploy concluído!"
@@ -70,4 +63,6 @@ echo "   Frontend: https://azenhacartoes.askbar.com.br"
 echo "   API:      https://api.azenhacartoes.askbar.com.br"
 echo "   Admin:    https://azenhacartoes.askbar.com.br/admin"
 echo ""
-echo "🎉 Acesse: https://azenhacartoes.askbar.com.br"
+echo "🔍 Para ver logs em tempo real:"
+echo "   docker logs -f azenha-backend"
+echo "   docker logs -f azenha-frontend"
