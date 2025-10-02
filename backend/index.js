@@ -106,6 +106,8 @@ const adminAuthMiddleware = async (req, res, next) => {
   }
 };
 
+
+
 // --- Endpoint de Login para Clientes ---
 app.post('/api/login', async (req, res) => {
   const { email, password } = req.body;
@@ -982,6 +984,29 @@ app.post('/api/admin/omie/lancamentos-lote', adminAuthMiddleware, async (req, re
         });
     }
 });
+
+app.get('/', (req, res) => {
+  res.json({ 
+    message: 'API Azenha Cartões',
+    status: 'online',
+    version: '1.0.0',
+    endpoints: {
+      login: '/api/login',
+      adminLogin: '/api/admin/login',
+      health: '/api/health'
+    }
+  });
+});
+
+// Health check
+app.get('/api/health', (req, res) => {
+  res.json({ 
+    status: 'ok',
+    database: pool ? 'connected' : 'disconnected',
+    timestamp: new Date().toISOString()
+  });
+});
+
 
 app.listen(port, () => {
     console.log(`Back-end rodando em http://localhost:${port}`);
